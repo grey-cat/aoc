@@ -4,22 +4,28 @@ $inputdata = (Get-Content .\inputs\2015\01.txt).ToCharArray()
 
 # Starts on the ground floor
 $floor = 0
-$position = 0
-$basementvisit = 0 
+
+# Calculate question 2
+$sequencenumber = 0
+$firstbasementvisit = $false 
 
 foreach($input in $inputdata){
-    $position++
+# What floor do the instructions take Santa
     switch ($input) {
         # Go up 1 floor
         {$input -eq '('} { $floor++ }
 
         # Go down one floor
         {$input -eq ')'} { $floor--}
-    }
-        if (($floor -eq -1) -and ($basementvisit -eq 0)){
-        Write-Host  "Part two: $position"
-    }
-    $basementvisit++
+    }# end switch
+
+# What is the position of the character that causes Santa to first enter the basement?
+$sequencenumber ++
+
+if ($floor -eq -1 -and $firstbasementvisit -eq $false){
+    Write-Host  "Part two answer: $sequencenumber"
+    $firstbasementvisit = $true    
+}
 }
 
-Write-Host  "Part one: $floor"
+Write-Host  "Part one answer: $floor"
