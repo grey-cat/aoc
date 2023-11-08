@@ -2,7 +2,6 @@
 $inputdata = Get-Content .\inputs\2015\02.txt
 
 $totalpaperrequired = 0
-# find the surface area of the box, which is 2*l*w + 2*w*h + 2*h*l
 
 foreach ($entry in $inputdata) {
     
@@ -22,7 +21,11 @@ foreach ($entry in $inputdata) {
 
     # Calculate smallest side
     $smallestside = $side1, $side2, $side3 | Sort-Object
+    
+    # Calculate paper required
     $requiredpaper = $surfacearea + $smallestside[0]
+
+
     $totalpaperrequired += $requiredpaper
 }
 
